@@ -1,9 +1,7 @@
 from langchain_community.utilities import SerpAPIWrapper
 from googleapiclient.discovery import build
 import os
-from fastapi import FastAPI  # update this path to match your project
-
-
+from fastapi import FastAPI
 
 # Set your SerpAPI key
 os.environ["SERPAPI_API_KEY"] = "8cafaef62871efcbd48c090e1caa36caa5e9f68db7e44be1b427ca33b099ffcf"
@@ -57,28 +55,11 @@ def search_youtube_links(query, max_results):
         return "nothing found"
     return video_links
 
-
 # === Combined Resource Finder ===
 def find_resources(query, max_results=3):
     web_results = search_web_links(query, max_results)
     youtube_results = search_youtube_links(query, max_results)
     return {"web": web_results, "youtube": youtube_results}
-
-
-# # === Test Example ===
-# resources = find_resources('Python + Basics')
-
-# Print Web Articles
-# print("\n📚 ARTICLE LINKS:\n")
-# for i, item in enumerate(resources['web'], 1):
-#     print(f"{i}. {item['title']}\n   {item['url']}")
-#     print()
-#
-# # Print YouTube Videos
-# print("\n🎥 YOUTUBE LINKS:\n")
-# for i, item in enumerate(resources['youtube'], 1):
-#     print(f"{i}. {item['title']}\n   {item['url']}")
-#     print()
 
 app = FastAPI()
 @app.get("/search")
