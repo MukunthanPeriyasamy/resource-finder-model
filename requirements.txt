@@ -7,3 +7,4 @@ transformers
 faiss-cpu
 google-search-results
 huggingface
+langchain_community
