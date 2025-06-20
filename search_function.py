@@ -3,11 +3,7 @@ from googleapiclient.discovery import build
 import os
 from fastapi import FastAPI  # update this path to match your project
 
-app = FastAPI()
 
-@app.get("/search")
-def search(query: str):
-    return find_resources(query)
 
 # Set your SerpAPI key
 os.environ["SERPAPI_API_KEY"] = "8cafaef62871efcbd48c090e1caa36caa5e9f68db7e44be1b427ca33b099ffcf"
@@ -69,19 +65,22 @@ def find_resources(query, max_results=3):
     return {"web": web_results, "youtube": youtube_results}
 
 
-# === Test Example ===
-query = input("Search for the resource:\n")
-resources = find_resources(query)
+# # === Test Example ===
+# resources = find_resources('Python + Basics')
 
 # Print Web Articles
-print("\n📚 ARTICLE LINKS:\n")
-for i, item in enumerate(resources['web'], 1):
-    print(f"{i}. {item['title']}\n   {item['url']}")
-    print()
+# print("\n📚 ARTICLE LINKS:\n")
+# for i, item in enumerate(resources['web'], 1):
+#     print(f"{i}. {item['title']}\n   {item['url']}")
+#     print()
+#
+# # Print YouTube Videos
+# print("\n🎥 YOUTUBE LINKS:\n")
+# for i, item in enumerate(resources['youtube'], 1):
+#     print(f"{i}. {item['title']}\n   {item['url']}")
+#     print()
 
-# Print YouTube Videos
-print("\n🎥 YOUTUBE LINKS:\n")
-for i, item in enumerate(resources['youtube'], 1):
-    print(f"{i}. {item['title']}\n   {item['url']}")
-    print()
-
+app = FastAPI()
+@app.get("/search")
+def search(query: str):
+    return find_resources(query)
