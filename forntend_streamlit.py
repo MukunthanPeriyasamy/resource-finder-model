@@ -17,15 +17,15 @@ else:
 
                 # 📖 Article Links
                 st.subheader("🔗 Article Links")
-                for item in data["web"]:
-                    st.markdown(f"**{item['title']}**")
+                for i,item in enumerate(data["web"],1):
+                    st.markdown(f"**{i}. {item['title']}**")
                     st.markdown(f"[{item['url']}]({item['url']})")
                     st.caption(item.get("snippet", "No description available."))
 
                 # 🎥 YouTube Video Links
                 st.subheader("🎥 YouTube Video Links")
-                for item in data["youtube"]:
-                    st.markdown(f"**{item['title']}**")
+                for i,item in enumerate(data["web"],1):
+                    st.markdown(f"**{i}. {item['title']}**")
                     st.markdown(f"[{item['url']}]({item['url']})")
 
             else:
