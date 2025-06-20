@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+langchain
+google-api-python-client
+sentence-transformers
+transformers
+faiss-cpu
+google-search-results
+huggingface
