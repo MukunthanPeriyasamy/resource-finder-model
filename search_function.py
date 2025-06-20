@@ -1,6 +1,13 @@
 from langchain_community.utilities import SerpAPIWrapper
 from googleapiclient.discovery import build
 import os
+from fastapi import FastAPI  # update this path to match your project
+
+app = FastAPI()
+
+@app.get("/search")
+def search(query: str):
+    return find_resources(query)
 
 # Set your SerpAPI key
 os.environ["SERPAPI_API_KEY"] = "8cafaef62871efcbd48c090e1caa36caa5e9f68db7e44be1b427ca33b099ffcf"
